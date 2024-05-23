@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Table, theme } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-import { getlistCookie } from '../../../api/allCookie';
 import Title from 'antd/es/typography/Title';
 import Button from 'antd-button-color';
+import { getlistUserAds } from '../../../api/userAds';
 
 const columns = [
     {
@@ -46,7 +46,7 @@ const NguongLive = () => {
     } = theme.useToken();
     const fetchData = async () => {
         setLoading(true);
-        await getlistCookie()
+        await getlistUserAds()
             .then((res) => {
                 setData(res.data);
                 setLoading(false)
