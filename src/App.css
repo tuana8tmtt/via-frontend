@@ -1,0 +1,59 @@
+/* logo */
+.logo{
+  color: #fff;
+  margin: 25px 0;
+}
+
+/* login */
+.login-bg{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-image: url('./assets/bg-login.jpg');
+   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.title-login{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.login-form {
+  width: 500px;
+  background-color: #fff;
+  padding: 30px;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  font-size: 18px;
+  width: 100%;
+}
+.user-login{
+  display: block;
+  margin: auto;
+  width: 20%;
+}
+
+/* Page Not Found */
+.page-not-found{
+  background-color: #f8f8ff;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header */
+.header_avatar{
+  float: right; 
+  padding: 0px 18px;
+  cursor: pointer;
+}
+.header_dropdown{
+  padding: 0px 20px;
+}
