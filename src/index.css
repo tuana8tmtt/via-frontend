@@ -1,5 +1,14 @@
 @import 'antd-button-color/dist/css/style.css'; 
+@font-face {
+  font-family: "Nunito", sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap') format('woff2'),
+       url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap') format('woff');
+  font-style: normal;
+}
 
+* {
+  font-family: "Nunito", sans-serif;
+}
 body{
   margin: 0;
 }
