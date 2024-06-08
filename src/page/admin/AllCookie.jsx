@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Table, message, theme } from 'antd';
+import { Breadcrumb, Layout, Table, message, theme } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { getlistCookie } from '../../api/allCookie';
 import Title from 'antd/es/typography/Title';
@@ -7,10 +7,6 @@ import Button from 'antd-button-color';
 import moment from 'moment';
 import { Input } from "antd";
 import { Space, Typography } from 'antd';
-
-
-
-
 
 const AllCookie = () => {
     const [data, setData] = useState();
@@ -28,27 +24,27 @@ const AllCookie = () => {
     } = theme.useToken();
     const columns = [
         {
+            title: 'Info Cookie',
             key: '_id',
-            sorter: (a, b) => a._id - b._id,
+            sorter: (a, b) => a._id.toString().localeCompare(b._id.toString()),
             render: (record) => {
                 function handleCopy(data) {
                     navigator.clipboard.writeText(data)
-                    if(data){
+                    if (data) {
                         messageApi.open({
                             type: 'success',
                             content: 'Bạn đã sao chép thành công',
-                          });
+                        });
                     }
-                    else{
+                    else {
                         messageApi.open({
                             type: 'error',
                             content: 'Tài khoản không có thông tin',
-                          });
+                        });
                     }
                 }
                 const apitime = record.updatedAt;
                 const fixedtime = moment.utc(apitime).local();
-                console.log(record)
                 return (
                     <>
                         <div className="cl_1">
@@ -66,29 +62,29 @@ const AllCookie = () => {
                 )
             },
             width: '30%',
-    
+
         },
         {
             title: 'Info ADS',
             key: '_id',
-            sorter: true,
+            sorter: (a, b) => a._id.toString().localeCompare(b._id.toString()),
             render: (record) => {
-                function check_status(data){
+                function check_status(data) {
                     var a
-                    switch (data){
+                    switch (data) {
                         case 0:
-                            return a = <Text type="success" className="active">Hoạt động</Text>;
+                            return a = <Text type="success" className="text_active">Hoạt động</Text>;
                         case 1:
-                            return a = <Text type="danger" className="inactive">Vô hiệu hóa</Text>;
+                            return a = <Text type="danger" className="text_active">Vô hiệu hóa</Text>;
                         case 2:
-                            return a = <Text type="warning" className="no">Nợ</Text>;
+                            return a = <Text type="warning" className="text_active">Nợ</Text>;
                     }
                 }
                 return (
                     <>
                         <div className="cl_2">
                             <div className="status">
-                                <span>- {check_status(record.status)}</span> 
+                                <span>- {check_status(record.status)}</span>
                                 {/* | <span>Đơn vị: {record.curency}</span> */}
                             </div>
                             <div className="Friend">- Bạn bè: {record.friend}</div>
@@ -102,13 +98,15 @@ const AllCookie = () => {
                     </>)
             }
         },
-    
+
     ];
     const fetchData = async () => {
         setLoading(true);
-        await getlistCookie()
+        const { current, pageSize } = tableParams.pagination;
+        await getlistCookie(current, pageSize)
             .then((res) => {
-                setData(res.data);
+                const { data, totalRecords } = res.data;
+                setData(data);
                 setLoading(false)
             })
 
@@ -130,29 +128,32 @@ const AllCookie = () => {
         }
     };
     return (
+        <Layout style={{ padding: '0 24px 24px' }}>
+            <Title level={3}>All Cookie</Title>
+            <Content
+                style={{
+                    padding: 24,
+                    minHeight: 280,
+                    background: colorBgContainer,
+                    borderRadius: borderRadiusLG,
+                }}
+                className='content_custom'
+            >
+                {contextHolder}
+                <div>
 
-        <Content
-            style={{
-                margin: '24px 16px',
-                padding: 24,
-                minHeight: 280,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-            }}
-        >
-            {contextHolder}
-            <div>
-                <Title level={3}>All Cookie</Title>
-            </div>
-            <Table
-                columns={columns}
-                rowKey={(record) => record.id}
-                dataSource={data}
-                pagination={tableParams.pagination}
-                loading={loading}
-                onChange={handleTableChange}
-            />
-        </Content>
+                </div>
+                <Table
+                    columns={columns}
+                    rowKey={(record) => record._id}
+                    dataSource={data}
+                    pagination={tableParams.pagination}
+                    loading={loading}
+                    onChange={handleTableChange}
+                />
+            </Content>
+        </Layout>
+
     );
 };
 export default AllCookie;

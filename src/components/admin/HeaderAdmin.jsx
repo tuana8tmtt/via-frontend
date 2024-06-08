@@ -1,10 +1,11 @@
 import { Avatar, Dropdown, Layout, Space, message, theme } from 'antd';
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { UserOutlined, LogoutOutlined, FullscreenOutlined } from '@ant-design/icons';
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 
 const HeaderAdmin = () => {
+    const navigate = useNavigate()
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
@@ -28,9 +29,10 @@ const HeaderAdmin = () => {
                     content: 'Đang đăng xuất',
                 });
 
-                // setTimeout(() => {
-                //     navigate(PATH_LANDING.root);
-                // }, 1000);
+                setTimeout(() => {
+                    localStorage.removeItem("user")
+                    navigate('/login')
+                }, 3000);
             },
         },
     ];
@@ -41,7 +43,9 @@ const HeaderAdmin = () => {
                 padding: 0,
                 background: colorBgContainer,
             }}
+            className='header_custom'
         >
+           
             <div className='header_avatar'>
                 <Dropdown
                     menu={{
@@ -51,11 +55,12 @@ const HeaderAdmin = () => {
                     overlayStyle={{ fontSize: '20px', fontWeight: 'bold' }}
                 >
                     <Space onClick={(e) => e.preventDefault()}>
-                        <Avatar icon={<UserOutlined />} />
+                        <Avatar size={50} src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png" />
                     </Space>
                 </Dropdown>
 
             </div>
+        
         </Header>
     )
 }

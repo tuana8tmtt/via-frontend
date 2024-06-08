@@ -1,13 +1,4 @@
-@font-face {
-  font-family: "Noto Sans JP", sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap') format('woff2'),
-       url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap') format('woff');
-  font-style: normal;
-}
 
-* {
-  font-family: "Noto Sans JP", sans-serif;
-}
 /* logo */
 .logo {
   color: #fff;
@@ -64,10 +55,14 @@
 }
 
 /* Header */
+.ant-layout-header{
+  border-bottom: #e3e3e3 solid 2px;
+}
 .header_avatar {
   float: right;
-  padding: 0px 18px;
+  padding-right: 25px;
   cursor: pointer;
+  
 }
 
 .header_dropdown {
@@ -127,7 +122,32 @@
   /* color: #000; */
 }
 
-.active, .inactive, .no {
-  font-size: 18px;
+.text_active{
+  font-size:  18px;
 }
 
+/* Sidebar */
+
+.ant-menu-item-selected{
+  background-color: #113536 !important;
+}
+
+/* Content */
+.content_custom{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Table */
+.ant-table-tbody > tr:hover > td {
+  background-color: #ececec !important; /* Màu nền khi hover */
+  color: #000 !important; /* Màu chữ khi hover (tùy chọn) */
+}
+.ant-table-tbody{
+  background-color: #F5F5F5;
+}
+.ant-table-thead{
+  background-color: #fafafa;
+}
+.ant-table-tbody > tr:hover > td a {
+  color: inherit !important;
+}

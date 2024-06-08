@@ -1,4 +1,5 @@
 import { Flex, Menu } from 'antd';
+import moment from 'moment';
 import { NavLink, useLocation } from 'react-router-dom';
 const items = [
   {
@@ -235,7 +236,7 @@ const Sidebar = () => {
   return (
     <div>
       <Flex align='center' justify='center'>
-        <div className='logo'>17/05 : 0 CC ,0 BM ,0 Page	</div>
+        <div className='logo'>{moment().format('DD/MM')} : 0 CC ,0 BM ,0 Page	</div>
       </Flex>
       <Menu
         selectedKeys={[currentPath]}
@@ -245,6 +246,7 @@ const Sidebar = () => {
         style={{
           fontSize: '16px'
         }}
+        className='menu-bar'
       />
     </div>
   );

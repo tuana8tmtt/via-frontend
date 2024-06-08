@@ -4,6 +4,7 @@ import Sidebar from '../../components/admin/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { Footer } from 'antd/es/layout/layout';
 import HeaderAdmin from '../../components/admin/HeaderAdmin';
+
 const { Sider } = Layout;
 const AdminLayout = () => {
 
